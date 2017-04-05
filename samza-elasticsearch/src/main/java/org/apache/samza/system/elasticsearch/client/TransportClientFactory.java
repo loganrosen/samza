@@ -22,13 +22,14 @@ package org.apache.samza.system.elasticsearch.client;
 import org.apache.samza.SamzaException;
 import org.apache.samza.config.ElasticsearchConfig;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.transport.TransportAddress;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
+import java.net.InetSocketAddress;
 import java.util.Map;
+
 
 /**
  * A {@link ClientFactory} that creates a {@link org.elasticsearch.node.Node} client that connects
@@ -46,7 +47,7 @@ public class TransportClientFactory implements ClientFactory {
   private final int transportPort;
 
   public TransportClientFactory(ElasticsearchConfig config) {
-    clientSettings = config.getElasticseachSettings();
+    clientSettings = config.getElasticsearchSettings();
 
     if (config.getTransportHost().isPresent()) {
       transportHost = config.getTransportHost().get();
@@ -65,12 +66,12 @@ public class TransportClientFactory implements ClientFactory {
 
   @Override
   public Client getClient() {
-    Settings settings = ImmutableSettings.settingsBuilder()
+    Settings settings = Settings.builder()
         .put(clientSettings)
         .build();
 
-    TransportAddress address = new InetSocketTransportAddress(transportHost, transportPort);
+    TransportAddress address = new InetSocketTransportAddress(new InetSocketAddress(transportHost, transportPort));
 
-    return new TransportClient(settings).addTransportAddress(address);
+    return new PreBuiltTransportClient(settings).addTransportAddress(address);
   }
 }

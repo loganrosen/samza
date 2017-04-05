@@ -17,7 +17,7 @@
  * under the License.
  */
  ext {
-  elasticsearchVersion = "1.5.1"
+  elasticsearchVersion = "5.3.0"
   jerseyVersion = "2.22.1"
   jodaTimeVersion = "2.2"
   joptSimpleVersion = "3.2"
@@ -40,4 +40,5 @@
   httpClientVersion="4.4.1"
   commonsLang3Version="3.4"
   apacheCommonsCollections4Version="4.0"
+  log4jtoslf4jVersion="2.8.1"
 }

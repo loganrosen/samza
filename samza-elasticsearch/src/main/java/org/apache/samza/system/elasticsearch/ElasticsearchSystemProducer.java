@@ -146,7 +146,7 @@ public class ElasticsearchSystemProducer implements SystemProducer {
               ActionResponse resp = itemResp.getResponse();
               if (resp instanceof IndexResponse) {
                 writes += 1;
-                if (((IndexResponse) resp).isCreated()) {
+                if (((IndexResponse) resp).status().equals(RestStatus.CREATED)) {
                   metrics.inserts.inc();
                 } else {
                   metrics.updates.inc();

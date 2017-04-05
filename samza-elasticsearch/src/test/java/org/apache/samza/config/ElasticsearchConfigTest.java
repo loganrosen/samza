@@ -73,7 +73,7 @@ public class ElasticsearchConfigTest {
   public void testGetElasticsearchSettings() throws Exception {
     ElasticsearchConfig config = configForProperty("systems.es.client.elasticsearch.foo", "bar");
 
-    assertEquals("bar", config.getElasticseachSettings().get("foo"));
+    assertEquals("bar", config.getElasticsearchSettings().get("foo"));
   }
 
   @Test

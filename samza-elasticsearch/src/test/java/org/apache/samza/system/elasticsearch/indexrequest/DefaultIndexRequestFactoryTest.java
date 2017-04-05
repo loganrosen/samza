@@ -23,10 +23,10 @@ import org.apache.samza.SamzaException;
 import org.apache.samza.system.OutgoingMessageEnvelope;
 import org.apache.samza.system.SystemStream;
 import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.common.base.Charsets;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Map;
 
@@ -98,7 +98,7 @@ public class DefaultIndexRequestFactoryTest {
   @Test
   public void testGetIndexRequestMessageBytes() throws Exception {
     IndexRequest indexRequest = indexRequestFactory.getIndexRequest(
-        new OutgoingMessageEnvelope(SYSTEM, "{\"foo\":\"bar\"}".getBytes(Charsets.UTF_8)));
+        new OutgoingMessageEnvelope(SYSTEM, "{\"foo\":\"bar\"}".getBytes(StandardCharsets.UTF_8)));
 
     assertEquals(Collections.singletonMap("foo", "bar"), indexRequest.sourceAsMap());
   }

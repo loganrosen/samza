@@ -221,7 +221,9 @@ project(':samza-elasticsearch') {
     compile project(':samza-api')
     compile project(":samza-core_$scalaVersion")
     compile "org.elasticsearch:elasticsearch:$elasticsearchVersion"
+    compile "org.elasticsearch.client:transport:$elasticsearchVersion"
     compile "com.google.guava:guava:$guavaVersion"
+    compile "org.apache.logging.log4j:log4j-to-slf4j:$log4jtoslf4jVersion"
     compile "org.slf4j:slf4j-api:$slf4jVersion"
     testCompile "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-all:$mockitoVersion"

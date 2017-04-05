@@ -61,7 +61,7 @@ public class ElasticsearchConfig extends MapConfig {
     }
   }
 
-  public Config getElasticseachSettings() {
+  public Config getElasticsearchSettings() {
     return subset(PREFIX_ELASTICSEARCH_SETTINGS);
   }
 
